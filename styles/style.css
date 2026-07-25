@@ -31,8 +31,7 @@
 
 .header {
   margin-top: 100px;
-  padding-top: clamp(7.625rem, 7.4821rem + 0.7143vw, 8.125rem);
-  padding-bottom: clamp(7.625rem, 7.4821rem + 0.7143vw, 8.125rem);
+  padding-block: clamp(7.625rem, 7.4821rem + 0.7143vw, 8.125rem);
 }
 
 .logo {
@@ -66,6 +65,8 @@
 
 .article-title {
   font-variation-settings: "wght" var(--header-font-weight);
+  font-size: 18px;
+  line-height: 100%;
   margin: 4px 10px;
 }
 
@@ -73,32 +74,32 @@
   width: 100%;
 }
 
-.sprint-article:nth-of-type(2) .image-container .sprint-image {
-  filter: grayscale(0.8);6 7
+.filter-grayscale {
+  filter: grayscale(0.8);
 }
 
-.sprint-article:nth-of-type(3) .image-container .sprint-image {
+.filter-blur {
   filter: blur(0.6rem);
 }
 
-.sprint-article:nth-of-type(4) .image-container .sprint-image {
+.filter-saturate {
   filter: saturate(200%);
 }
 
-.sprint-article:nth-of-type(5) .image-container .sprint-image {
+.filter-sepia {
   filter: sepia(100%);
 }
 
-.sprint-article:nth-of-type(6) .image-container .sprint-image {
+.filter-hue-rotate {
   filter: hue-rotate(175deg);
 }
 
-.sprint-article:nth-of-type(7) .image-container .sprint-image {
+.filter-invert {
   filter: invert(0.7);
 }
 
-.sprint-article:nth-of-type(8) .image-container .sprint-image {
-  filter: brightness(210%);
+.filter-multiple {
+  filter: brightness(210%) blur(0.1rem) sepia(75%);
 }
 
 .image-container {
@@ -143,7 +144,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 12px;
+  gap: 5px;
 }
 
 button {
@@ -172,7 +173,7 @@ button {
   transform-origin: center;
 }
 
-.like-icon.is-liked .heart {
+.like-icon.is-liked {
   animation: heart-scaling 1 0.3s ease-in 0.1s;
 }
 
@@ -193,6 +194,17 @@ button {
 }
 
 .sparks {
+  /*эта переменная уже определена в variables.css - в рамках этого 
+  селектора я лишь переопределил ее значение. 
+  Я это сделал в соответствии с рекомендацией в проектной:
+
+  "Удобно, когда все нужные цвета лежат в переменных. 
+  Одна у вас уже есть — контур. Второй переменной — например, --animation-fill-color — будет цвет заливки (красный). 
+  Создайте такую переменную и укажите её в качестве значения fill 
+  для искр — например, --contour-color." 
+  
+  Возможно, я не так понял эту рекомендацию.
+  */
   --contour-color: var(--animation-fill-color);
   fill: var(--contour-color);
   opacity: 0;
@@ -241,17 +253,13 @@ button {
   line-height: 0;
 }
 
-.card__like-button,
-.save-button,
-.modal-window-description-confirm {
+.button {
   position: relative;
   transition: box-shadow 0.3s ease;
   overflow: hidden;
 }
 
-.card__like-button::before,
-.save-button::before,
-.modal-window-description-confirm::before {
+.button::before {
   content: "";
   display: block;
   position: absolute;
@@ -263,21 +271,17 @@ button {
   transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:hover::before,
-.save-button:hover::before,
-.modal-window-description-confirm:hover::before {
+.button:hover::before {
   transform: translate(0);
 }
 
-.card__like-button:focus,
-.save-button:focus,
-.modal-window-description-confirm:focus {
+.button:focus {
   outline: none;
   box-shadow: 2px 2px 0 #000;
 }
 
 .button__text {
-  font-family: var(--accent-font), "Arial", "Helvetica", sans-serif;
+  font-family: var(--accent-font), "Fantasy", "Helvetica", fantasy;
   font-size: 14px;
   line-height: 90%;
   position: relative;
@@ -295,7 +299,7 @@ button {
 
 .save-button {
   padding-inline: 20px;
-  padding-block: 17px;
+  padding-block: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -331,13 +335,15 @@ button {
 
 .modal-window-description-text {
   text-align: start;
-  font-family: var(--accent-font), "Arial", "Helvetica", sans-serif;
+  font-family: var(--accent-font), "Arial", "Helvetica", fantasy;
   font-size: 14px;
+  text-transform: uppercase;
+  line-height: 150%;
 }
 
 .modal-window-description-confirm {
   margin-block-start: 30px;
-  font-family: var(--accent-font), "Arial", "Helvetica", sans-serif;
+  font-family: var(--accent-font), "Arial", "Helvetica", fantasy;
   font-size: 14px;
   text-transform: uppercase;
   text-align: center;
