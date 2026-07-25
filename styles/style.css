@@ -193,20 +193,8 @@ button {
   transition: fill 0.3s linear 0.03s;
 }
 
-.sparks {
-  /*эта переменная уже определена в variables.css - в рамках этого 
-  селектора я лишь переопределил ее значение. 
-  Я это сделал в соответствии с рекомендацией в проектной:
-
-  "Удобно, когда все нужные цвета лежат в переменных. 
-  Одна у вас уже есть — контур. Второй переменной — например, --animation-fill-color — будет цвет заливки (красный). 
-  Создайте такую переменную и укажите её в качестве значения fill 
-  для искр — например, --contour-color." 
-  
-  Возможно, я не так понял эту рекомендацию.
-  */
-  --contour-color: var(--animation-fill-color);
-  fill: var(--contour-color);
+.sparks { 
+  fill: var(--animation-fill-color);
   opacity: 0;
 }
 
@@ -233,7 +221,7 @@ button {
 .like-icon.is-liked .contour {
   fill: var(--animation-fill-color);
   transition-duration: 0.3s;
-  transition-delay: 0.06;
+  transition-delay: 0.06s;
 }
 
 .like-icon.is-liked .main-body {
@@ -349,9 +337,15 @@ button {
   text-align: center;
   padding-block: 10.5px;
   padding-inline: 114.5px;
+  width: 100%;
 }
 
 @media (width <= 375px) {
+  
+  dialog {
+    width: 100%;
+  };
+
   .save-button {
     flex-direction: column;
   }
